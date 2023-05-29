@@ -32,7 +32,7 @@ if [ ! -f "$FLAG_FILE" ]; then
     sudo pip3 install --upgrade adafruit-python-shell
 
     # Create blinkatest.py file
-    cat << EOF > blinkatest.py
+    cat << BLINKA > blinkatest.py
     import board
     import digitalio
     import busio
@@ -52,10 +52,10 @@ if [ ! -f "$FLAG_FILE" ]; then
     print("SPI ok!")
 
     print("done!")
-    EOF
+BLINKA
 
     # Create oled_test.py file
-    cat << EOF > oled_test.py
+    cat << OLED > oled_test.py
     import time
     import subprocess
     from board import SCL, SDA
@@ -102,7 +102,7 @@ if [ ! -f "$FLAG_FILE" ]; then
         disp.image(image)
         disp.show()
         time.sleep(0.1)
-    EOF
+OLED
 
     # Download the raspi-blinka.py script
     wget https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/raspi-blinka.py
