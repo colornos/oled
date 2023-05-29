@@ -23,7 +23,7 @@ sudo pip3 install --upgrade setuptools
 sudo pip3 install RPI.GPIO
 
 # Installing necessary fonts for PIL
-sudo apt-get install ttf-dejavu
+sudo apt-get install fonts-dejavu
 
 # Create blinkatest.py file
 cat << EOF > blinkatest.py
