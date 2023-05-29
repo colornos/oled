@@ -4,6 +4,27 @@
 sudo apt-get update
 sudo apt-get upgrade
 
+# Install python3-pip if not installed
+if ! command -v pip3 &> /dev/null
+then
+    sudo apt-get install python3-pip
+fi
+
+# Install adafruit-circuitpython-ssd1306
+sudo pip3 install adafruit-circuitpython-ssd1306
+
+# Install python3-pil
+sudo apt-get install python3-pil
+
+# Install RPI.GPIO module
+sudo pip3 install RPI.GPIO
+
+# Install adafruit-blinka
+sudo pip3 install adafruit-blinka
+
+# Installing necessary fonts for PIL
+sudo apt-get install ttf-dejavu
+
 # Create blinkatest.py file
 cat << EOF > blinkatest.py
 import board
@@ -12,7 +33,7 @@ import busio
 
 print("Hello blinka!")
 
-# Try to great a Digital input
+# Try to create a Digital input
 pin = digitalio.DigitalInOut(board.D4)
 print("Digital IO ok!")
 
@@ -26,6 +47,8 @@ print("SPI ok!")
 
 print("done!")
 EOF
+echo "blinkatest.py script created...done"
+sleep 3
 
 # Create oled_test.py file
 cat << EOF > oled_test.py
@@ -76,32 +99,8 @@ while True:
     disp.show()
     time.sleep(0.1)
 EOF
+echo "oled_test.py script created...done"
+sleep 3
 
-# Install python3-pip if not installed
-if ! command -v pip3 &> /dev/null
-then
-    sudo apt-get install python3-pip
-fi
-
-# Install adafruit-circuitpython-ssd1306
-sudo pip3 install adafruit-circuitpython-ssd1306
-
-# Install python3-pil
-sudo apt-get install python3-pil
-
-# Upgrade setuptools
-sudo pip3 install --upgrade setuptools
-
-# Install adafruit-python-shell
-sudo pip3 install --upgrade adafruit-python-shell
-
-# Download the raspi-blinka.py script
-wget https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/raspi-blinka.py
-
-# Run the script
-sudo python3 raspi-blinka.py
-
-# Check I2C and SPI devices
-ls /dev/i2c* /dev/spi*
-
-echo "Script finished successfully"
+# Reboot the Pi to make sure all configurations are applied
+sudo reboot
