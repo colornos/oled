@@ -19,9 +19,6 @@ sudo apt-get install python3-pil
 # Install RPI.GPIO module
 sudo pip3 install RPI.GPIO
 
-# Install adafruit-blinka
-sudo pip3 install adafruit-blinka
-
 # Installing necessary fonts for PIL
 sudo apt-get install ttf-dejavu
 
@@ -101,6 +98,9 @@ while True:
 EOF
 echo "oled_test.py script created...Done"
 sleep 5
+
+# Install adafruit-blinka
+sudo pip3 install adafruit-blinka
 
 # Reboot the Pi to make sure all configurations are applied
 sudo reboot
