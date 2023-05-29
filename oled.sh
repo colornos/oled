@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define a flag file
-FLAG_FILE="/home/pi/.flag_script"
+FLAG_FILE="/home/pi/oled/.flag_script"
 
 # Install and update
 if [ ! -f "$FLAG_FILE" ]; then
