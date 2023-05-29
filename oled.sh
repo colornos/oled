@@ -125,4 +125,3 @@ else
     # Remove flag file
     rm "$FLAG_FILE"
 fi
-       
