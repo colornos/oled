@@ -47,8 +47,8 @@ print("SPI ok!")
 
 print("done!")
 EOF
-echo "blinkatest.py script created...done"
-sleep 3
+echo "blinkatest.py script created...Done"
+sleep 5
 
 # Create oled_test.py file
 cat << EOF > oled_test.py
@@ -99,8 +99,8 @@ while True:
     disp.show()
     time.sleep(0.1)
 EOF
-echo "oled_test.py script created...done"
-sleep 3
+echo "oled_test.py script created...Done"
+sleep 5
 
 # Reboot the Pi to make sure all configurations are applied
 sudo reboot
