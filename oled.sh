@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define a flag file
-FLAG_FILE="/home/pi/oled/.flag_script"
+FLAG_FILE="/home/pi/.flag_script"
 
 # Install and update
 if [ ! -f "$FLAG_FILE" ]; then
@@ -31,22 +31,6 @@ if [ ! -f "$FLAG_FILE" ]; then
     # Install adafruit-python-shell
     sudo pip3 install --upgrade adafruit-python-shell
 
-    # Download the raspi-blinka.py script
-    wget https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/raspi-blinka.py
-
-    # Run the script
-    sudo python3 raspi-blinka.py
-
-    # Create a flag file
-    touch "$FLAG_FILE"
-
-    # Reboot
-    sudo reboot
-else
-
-    # Check I2C and SPI devices
-    ls /dev/i2c* /dev/spi*
-
     # Create blinkatest.py file
     cat << EOF > blinkatest.py
     import board
@@ -55,7 +39,7 @@ else
 
     print("Hello blinka!")
 
-    # Try to create a Digital input
+    # Try to great a Digital input
     pin = digitalio.DigitalInOut(board.D4)
     print("Digital IO ok!")
 
@@ -68,7 +52,7 @@ else
     print("SPI ok!")
 
     print("done!")
-EOF
+    EOF
 
     # Create oled_test.py file
     cat << EOF > oled_test.py
@@ -81,7 +65,7 @@ EOF
 
     i2c = busio.I2C(SCL, SDA)
     disp = adafruit_ssd1306.SSD1306_I2C(128, 32, i2c)
-    #... rest of your Python code ...
+
     disp.fill(0)
     disp.show()
 
@@ -118,11 +102,27 @@ EOF
         disp.image(image)
         disp.show()
         time.sleep(0.1)
-    time.sleep(0.1)
-EOF
+    EOF
+
+    # Download the raspi-blinka.py script
+    wget https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/raspi-blinka.py
+
+    # Create a flag file
+    touch "$FLAG_FILE"
+
+    # Run the script
+    sudo python3 raspi-blinka.py
+
+    # Reboot
+    sudo reboot
+else
+
+    # Check I2C and SPI devices
+    ls /dev/i2c* /dev/spi*
 
     echo "Script finished successfully"
 
     # Remove flag file
     rm "$FLAG_FILE"
 fi
+       
