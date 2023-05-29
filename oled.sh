@@ -16,6 +16,9 @@ sudo pip3 install adafruit-circuitpython-ssd1306
 # Install python3-pil
 sudo apt-get install python3-pil
 
+# Upgrade setuptools
+sudo pip3 install --upgrade setuptools
+
 # Install RPI.GPIO module
 sudo pip3 install RPI.GPIO
 
@@ -99,8 +102,20 @@ EOF
 echo "oled_test.py script created... Done"
 sleep 5
 
-# Install adafruit-blinka
-sudo pip3 install adafruit-blinka
+# Change directory to home
+cd ~
+
+# Install adafruit-python-shell
+sudo pip3 install --upgrade adafruit-python-shell
+
+# Download the raspi-blinka.py script
+wget https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/raspi-blinka.py
+
+# Run the script
+sudo python3 raspi-blinka.py
+
+# Check I2C and SPI devices
+ls /dev/i2c* /dev/spi*
 
 # Reboot the Pi to make sure all configurations are applied
 sudo reboot
