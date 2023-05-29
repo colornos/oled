@@ -44,7 +44,7 @@ print("SPI ok!")
 
 print("done!")
 EOF
-echo "blinkatest.py script created...Done"
+echo "blinkatest.py script created... Done"
 sleep 5
 
 # Create oled_test.py file
@@ -96,7 +96,7 @@ while True:
     disp.show()
     time.sleep(0.1)
 EOF
-echo "oled_test.py script created...Done"
+echo "oled_test.py script created... Done"
 sleep 5
 
 # Install adafruit-blinka
