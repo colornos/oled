@@ -53,7 +53,8 @@ sleep 5
 # Create oled_test.py file
 cat << EOF > oled_test.py
 import time
-from board import SCL, SDA
+import digitalio
+from board import SCL, SDA, D17
 import busio
 from PIL import Image, ImageDraw, ImageFont
 import adafruit_ssd1306
@@ -76,15 +77,30 @@ top = padding
 bottom = height - padding
 x = 0
 
-font = ImageFont.load_default()
+font_path = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"  # Update the path if necessary
+font_size = 18  # Choose a font size
+font = ImageFont.truetype(font_path, font_size)
+
+screens = ["Weight", "Temperature", "Heartrate", "Blood Pressure", "Glucose", "Blood Oxygen", "Cholestrol(HDL)", "Cholestrol(LDL)"]
+screen_index = 0
+
+button = digitalio.DigitalInOut(D17)
+button.direction = digitalio.Direction.INPUT
+button.pull = digitalio.Pull.UP
 
 while True:
     draw.rectangle((0, 0, width, height), outline=0, fill=0)
-    draw.text((x, top), "OLED Test", font=font, fill=255)
+    draw.text((x, top), screens[screen_index], font=font, fill=255)
 
     disp.image(image)
     disp.show()
-    time.sleep(0.1)
+
+    if not button.value:
+        screen_index += 1
+        if screen_index >= len(screens):
+            screen_index = 0
+        time.sleep(0.2)
+
 EOF
 echo "oled_test.py script created... Done"
 sleep 5
